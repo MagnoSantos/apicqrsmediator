@@ -18,7 +18,10 @@ namespace webapicqrsmediator.Api
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configuração do Application Insights e Swagger através do nuget mrv-foundation
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -26,6 +29,7 @@ namespace webapicqrsmediator.Api
             services.AddMemoryCache();
 
             services.ConfigurarComponentes();
+            services.ConfigurarOptions(Configuration);
 
             ConfigurarFluentValidation(services);
             ConfigurarVersionamento(services);

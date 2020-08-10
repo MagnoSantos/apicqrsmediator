@@ -26,7 +26,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
         [Test]
         public void DeveVerificarAsRegrasDeAdicaoDeClienteComDadosDeEntradaValidos()
         {
-            var cliente = _fixture.Build<AdicionarClienteRequest>()
+            var cliente = _fixture.Build<ClienteRequest>()
                 .With(c => c.Nome, "Magno")
                 .With(c => c.Email, "teste@teste.com")
                 .Create();
@@ -38,7 +38,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
         [Test]
         public void DeveRetornarErroAoVerificarAsRegrasDeAdicaoDeClienteComDadosDeEntradaVazios()
         {
-            var cliente = _fixture.Build<AdicionarClienteRequest>()
+            var cliente = _fixture.Build<ClienteRequest>()
                 .With(c => c.Nome, string.Empty)
                 .With(c => c.Email, string.Empty)
                 .Create();
@@ -54,7 +54,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
         [Test]
         public void DeveRetornarErroAoVerificarAsRegrasDeAdicaoDeClienteComDadosDeEntradaNulos()
         {
-            var cliente = _fixture.Build<AdicionarClienteRequest>()
+            var cliente = _fixture.Build<ClienteRequest>()
                 .With(c => c.Nome, null as string)
                 .With(c => c.Email, null as string)
                 .Create();
@@ -67,7 +67,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
         [Test]
         public void DeveRetornarErroAoVerificarAsRegrasDeAdicaoDeClienteComDadosDeEntradaComMaisDe25caracteres()
         {
-            var cliente = _fixture.Build<AdicionarClienteRequest>()
+            var cliente = _fixture.Build<ClienteRequest>()
                 .With(c => c.Nome, "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
                 .With(c => c.Email, null as string)
                 .Create();

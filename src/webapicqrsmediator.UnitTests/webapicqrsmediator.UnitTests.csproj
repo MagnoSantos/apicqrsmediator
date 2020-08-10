@@ -18,12 +18,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="API\" />
+    <ProjectReference Include="..\webapicqrsmediator.Api\webapicqrsmediator.Api\webapicqrsmediator.Api.csproj" />
+    <ProjectReference Include="..\webapicqrsmediator.Domain\webapicqrsmediator.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\webapicqrsmediator.Api\webapicqrsmediator.Api\webapicqrsmediator.Api.csproj" />
-    <ProjectReference Include="..\webapicqrsmediator.Domain\webapicqrsmediator.Domain.csproj" />
+    <Folder Include="API\" />
   </ItemGroup>
 
 </Project>

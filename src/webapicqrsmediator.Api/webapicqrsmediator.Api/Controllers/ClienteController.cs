@@ -16,7 +16,7 @@ namespace webapicqrsmediator.Api.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Adicionar(
             [FromServices] IMediator mediator,
-            [FromBody] AdicionarClienteRequest command
+            [FromBody] ClienteRequest command
         )
         {
             if (!ModelState.IsValid)
