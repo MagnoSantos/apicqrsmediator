@@ -1,6 +1,6 @@
-﻿namespace webapicqrsmediator.Domain.Entities
+﻿namespace webapicqrsmediator.Domain.Models
 {
-    public class Colaborador : EntityBase
+    public class Colaborador : Base
     {
         public Colaborador(string nome, string salario, string idade)
         {

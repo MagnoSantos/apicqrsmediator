@@ -2,7 +2,6 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Agents;
 using webapicqrsmediator.Domain.Commands.Response;
 using webapicqrsmediator.Domain.Entities;
 

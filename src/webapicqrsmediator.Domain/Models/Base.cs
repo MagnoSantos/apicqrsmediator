@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace webapicqrsmediator.Domain.Entities
+namespace webapicqrsmediator.Domain.Models
 {
-    public class EntityBase
+    public class Base
     {
         public Guid Id { get; set; } = Guid.NewGuid();
     }

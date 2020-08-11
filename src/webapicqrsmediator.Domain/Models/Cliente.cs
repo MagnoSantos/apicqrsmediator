@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace webapicqrsmediator.Domain.Entities
+namespace webapicqrsmediator.Domain.Models
 {
-    public class Cliente : EntityBase
+    public class Cliente : Base
     {
         public Cliente() { }
 

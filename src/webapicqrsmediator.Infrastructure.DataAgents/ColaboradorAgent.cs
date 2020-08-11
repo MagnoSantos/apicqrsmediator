@@ -3,12 +3,10 @@ using Flurl.Http;
 using Microsoft.Extensions.Options;
 using Polly;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Agents;
-using webapicqrsmediator.Domain.Entities;
 using webapicqrsmediator.Infrastructure.Data.Agents.Options;
 using webapicqrsmediator.Infrastructure.Data.Agents.Responses;
 
-namespace webapicqrsmediator.Infrastructure.Data.Agents
+namespace webapicqrsmediator.Infrastructure.DataAgents
 {
     public class ColaboradorAgent : IColaboradorAgent
     {
@@ -25,7 +23,7 @@ namespace webapicqrsmediator.Infrastructure.Data.Agents
         /// </summary>
         /// <param name="colaborador"></param>
         /// <returns></returns>
-        public async Task<AdicionarColaboradorResponse> AdicionarColaborador(Colaborador colaborador)
+        public async Task<AdicionarColaboradorResponse> AdicionarColaborador(string nome, string salario, string idade)
         {
             return await Policy
                 .Handle<FlurlHttpException>()
@@ -33,7 +31,12 @@ namespace webapicqrsmediator.Infrastructure.Data.Agents
                 .ExecuteAsync(() =>
                    _options.UrlBase
                     .AppendPathSegments("api", "v1", "create")
-                    .PostJsonAsync(colaborador)
+                    .PostJsonAsync(new
+                    {
+                        name = $"{nome}",
+                        salario = $"{salario}",
+                        idade = $"{idade}"
+                    })
                     .ReceiveJson<AdicionarColaboradorResponse>()
             );
         }
