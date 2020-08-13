@@ -1,4 +1,4 @@
-﻿using webapicqrsmediator.Domain.Entities;
+﻿using webapicqrsmediator.Domain.Models;
 
 namespace webapicqrsmediator.Domain.Repositories
 {

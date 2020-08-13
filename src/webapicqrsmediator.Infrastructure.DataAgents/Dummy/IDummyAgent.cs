@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
-using webapicqrsmediator.Infrastructure.Data.Agents.Responses;
+using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses;
 
 namespace webapicqrsmediator.Infrastructure.DataAgents
 {
-    public interface IColaboradorAgent
+    public interface IDummyAgent
     {
         Task<AdicionarColaboradorResponse> AdicionarColaborador(string nome, string salario, string idade);
     }

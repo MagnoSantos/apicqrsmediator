@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Commands;
 using webapicqrsmediator.Domain.Commands.Response;
-using webapicqrsmediator.Domain.Entities;
+using webapicqrsmediator.Domain.Models;
 using webapicqrsmediator.Domain.Repositories;
 
 namespace webapicqrsmediator.Domain.Handler
@@ -26,9 +26,9 @@ namespace webapicqrsmediator.Domain.Handler
 
             return new ClienteResponse
             {
-                Id = cliente.Id, 
-                Nome = cliente.Nome, 
-                Email = cliente.Email, 
+                Id = cliente.Id,
+                Nome = cliente.Nome,
+                Email = cliente.Email,
                 DataCriacao = cliente.DataCriacao
             };
         }

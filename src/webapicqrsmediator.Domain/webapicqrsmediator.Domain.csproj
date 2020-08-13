@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\webapicqrsmediator.Infrastructure.DataAgents\webapicqrsmediator.Infrastructure.DataAgents.csproj" />
+  </ItemGroup>
+
 </Project>

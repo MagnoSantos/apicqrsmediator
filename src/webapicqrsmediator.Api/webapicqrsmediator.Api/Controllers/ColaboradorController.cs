@@ -13,6 +13,12 @@ namespace webapicqrsmediator.Api.Controllers
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ColaboradorController : ControllerBase
     {
+        /// <summary>
+        /// Rota para adicionar um novo colocaborador através da integração com a API pública Dummy
+        /// </summary>
+        /// <param name="mediator">Diminui o acoplamento e aumenta o reuso das dependências na aplicação</param>
+        /// <param name="command">Corpo da requisição do colaborador</param>
+        /// <returns>Dados do colaborador após o processamento da requisição</returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -28,7 +34,10 @@ namespace webapicqrsmediator.Api.Controllers
 
             var colaboradorAdicionado = await mediator.Send(command);
 
-            return Created(new Uri(Request.GetEncodedUrl()), colaboradorAdicionado);
+            return Created(
+                new Uri(Request.GetEncodedUrl()), 
+                colaboradorAdicionado
+             );
         }
     }
 }

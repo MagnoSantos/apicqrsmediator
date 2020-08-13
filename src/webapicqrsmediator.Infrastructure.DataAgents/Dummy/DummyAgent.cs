@@ -3,16 +3,16 @@ using Flurl.Http;
 using Microsoft.Extensions.Options;
 using Polly;
 using System.Threading.Tasks;
-using webapicqrsmediator.Infrastructure.Data.Agents.Options;
-using webapicqrsmediator.Infrastructure.Data.Agents.Responses;
+using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
+using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses;
 
 namespace webapicqrsmediator.Infrastructure.DataAgents
 {
-    public class ColaboradorAgent : IColaboradorAgent
+    public class DummyAgent : IDummyAgent
     {
         private readonly DummyOptions _options;
 
-        public ColaboradorAgent(IOptionsMonitor<DummyOptions> options)
+        public DummyAgent(IOptionsMonitor<DummyOptions> options)
         {
             _options = options.CurrentValue;
         }

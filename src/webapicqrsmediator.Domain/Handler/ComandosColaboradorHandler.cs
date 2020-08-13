@@ -3,28 +3,26 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Commands.Response;
-using webapicqrsmediator.Domain.Entities;
+using webapicqrsmediator.Infrastructure.DataAgents;
 
 namespace webapicqrsmediator.Domain.Handler
 {
     public class ComandosColaboradorHandler : IRequestHandler<ColaboradorRequest, ColaboradorResponse>
     {
-        private readonly IColaboradorAgent _colaboradorAgent;
+        private readonly IDummyAgent _colaboradorAgent;
 
-        public ComandosColaboradorHandler(IColaboradorAgent colaboradorAgent)
+        public ComandosColaboradorHandler(IDummyAgent colaboradorAgent)
         {
             _colaboradorAgent = colaboradorAgent;
         }
 
         public async Task<ColaboradorResponse> Handle(ColaboradorRequest request, CancellationToken cancellationToken)
         {
-            var colaborador = new Colaborador(
+            var response = await _colaboradorAgent.AdicionarColaborador(
                 nome: request.Nome,
                 salario: request.Salario,
                 idade: request.Idade
             );
-
-            var response = await _colaboradorAgent.AdicionarColaborador(colaborador);
 
             return new ColaboradorResponse
             {

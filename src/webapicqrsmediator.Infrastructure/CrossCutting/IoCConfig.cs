@@ -8,10 +8,10 @@ using webapicqrsmediator.Domain;
 using webapicqrsmediator.Domain.Commands;
 using webapicqrsmediator.Domain.Queries;
 using webapicqrsmediator.Domain.Repositories;
-using webapicqrsmediator.Infrastructure.Data.Agents;
-using webapicqrsmediator.Infrastructure.Data.Agents.Options;
+using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
 using webapicqrsmediator.Infrastructure.Data.Context;
 using webapicqrsmediator.Infrastructure.Data.Repositories;
+using webapicqrsmediator.Infrastructure.DataAgents;
 
 namespace webapicqrsmediator.Infrastructure.CrossCutting
 {
@@ -75,7 +75,7 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         private static void ConfigurarAgent(this IServiceCollection services)
         {
             services
-                .AddTransient<IColaboradorAgent, ColaboradorAgent>();
+                .AddTransient<IDummyAgent, DummyAgent>();
         }
     }
 }

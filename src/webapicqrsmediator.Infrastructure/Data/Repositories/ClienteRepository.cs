@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Entities;
+using webapicqrsmediator.Domain.Models;
 using webapicqrsmediator.Domain.Repositories;
 using webapicqrsmediator.Infrastructure.Data.Context;
 
