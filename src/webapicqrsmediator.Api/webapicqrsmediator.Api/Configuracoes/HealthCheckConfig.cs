@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using webapicqrsmediator.Api.HealthCheck;
 
 namespace webapicqrsmediator.Api.Configuracoes
 {
@@ -15,7 +16,7 @@ namespace webapicqrsmediator.Api.Configuracoes
                 .AddHealthChecks()
                 //.AddAzureTableStorage("connection string", "descricao")
                 //.AddAzureKeyVault("Url KeyVault", "descricao")
-                .AddCheck<>
+                .AddCheck<DummyHealthCheck>("Dummy API Integração");
         }
     }
 }

@@ -5,6 +5,7 @@ using Polly;
 using System.Threading.Tasks;
 using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
 using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses;
+using webapicqrsmediator.Infrastructure.DataAgents.Dummy.Responses;
 
 namespace webapicqrsmediator.Infrastructure.DataAgents
 {
@@ -39,6 +40,19 @@ namespace webapicqrsmediator.Infrastructure.DataAgents
                     })
                     .ReceiveJson<AdicionarColaboradorResponse>()
             );
+        }
+
+        public async Task<BuscarColaboradorResponse> BuscarTodosColaboradores()
+        {
+            return await Policy
+                .Handle<FlurlHttpException>()
+                .RetryAsync()
+                .ExecuteAsync(() =>
+                    _options.UrlBase
+                    .AppendPathSegment("employees")
+                    .GetAsync()
+                    .ReceiveJson<BuscarColaboradorResponse>()
+                );
         }
     }
 }

@@ -1,4 +1,6 @@
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -57,6 +59,12 @@ namespace webapicqrsmediator.Api
             app.UseMiddleware<ExcecoesGlobaisMiddleware>();
 
             app.UseAuthorization();
+
+            app.UseHealthChecks("/health", new HealthCheckOptions
+            {
+                Predicate  = _ => true, 
+                ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+            });
 
             app.UseEndpoints(endpoints =>
             {

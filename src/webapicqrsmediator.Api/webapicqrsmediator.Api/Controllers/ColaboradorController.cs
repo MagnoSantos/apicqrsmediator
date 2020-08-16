@@ -1,5 +1,4 @@
-﻿
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +34,7 @@ namespace webapicqrsmediator.Api.Controllers
             var colaboradorAdicionado = await mediator.Send(command);
 
             return Created(
-                new Uri(Request.GetEncodedUrl()), 
+                new Uri(Request.GetEncodedUrl()),
                 colaboradorAdicionado
              );
         }

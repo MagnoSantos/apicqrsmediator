@@ -11,13 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="HealthCheck\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AspNetCore.HealthChecks.AzureKeyVault" Version="3.1.1" />
+    <PackageReference Include="AspNetCore.HealthChecks.AzureStorage" Version="3.2.0" />
+    <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="3.1.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="3.1.7" />
   </ItemGroup>
 
   <ItemGroup>
