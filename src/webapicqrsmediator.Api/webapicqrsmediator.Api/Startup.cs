@@ -1,10 +1,10 @@
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using webapicqrsmediator.Api.Configuracoes;
+using webapicqrsmediator.Api.Extensions;
 using webapicqrsmediator.Infrastructure.CrossCutting;
 
 namespace webapicqrsmediator.Api
@@ -19,7 +19,8 @@ namespace webapicqrsmediator.Api
         public IConfiguration Configuration { get; }
 
         /// <summary>
-        /// Configuração do Application Insights e Swagger através do nuget mrv-foundation
+        /// Configuração do Application Insights e Swagger através do nuget mrv-foundation (toolkit)
+        /// Link de referência Arquitetura TI MRV (https://mrvengenharia.visualstudio.com/Arquitetura/_wiki/wikis/Arquitetura.wiki/1355/MRV-Toolkit)
         /// </summary>
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
@@ -30,9 +31,9 @@ namespace webapicqrsmediator.Api
 
             services.ConfigurarComponentes();
             services.ConfigurarOptions(Configuration);
-
-            ConfigurarFluentValidation(services);
-            ConfigurarVersionamento(services);
+            services.ConfigurarFluentValidation();
+            services.ConfigurarVersionamento();
+            services.ConfigurarHealthCheck();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -62,25 +63,5 @@ namespace webapicqrsmediator.Api
                 endpoints.MapControllers();
             });
         }
-
-        #region Métodos privados
-
-        private static void ConfigurarFluentValidation(IServiceCollection services)
-        {
-            services.AddMvc()
-                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
-        }
-
-        private static void ConfigurarVersionamento(IServiceCollection services)
-        {
-            services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ReportApiVersions = true;
-            });
-        }
-
-        #endregion Métodos privados
     }
 }

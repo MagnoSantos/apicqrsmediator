@@ -41,6 +41,12 @@ namespace webapicqrsmediator.Api.Controllers
             );
         }
 
+        /// <summary>
+        /// Requisição para obter um cliente por Id 
+        /// </summary>
+        /// <param name="mediator">Diminiu o acoplamento e aumenta o reuso das dependências na aplicação</param>
+        /// <param name="command">Query Param contendo o Id do cliente a ser obtido</param>
+        /// <returns>Retorno corresponde ao cliente que foi obtido após processada a requisição</returns>
         [HttpGet]
         [ProducesResponseType(typeof(Sucesso<ObterClientePorIdResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Falha), StatusCodes.Status404NotFound)]
