@@ -22,4 +22,8 @@
     <ProjectReference Include="..\webapicqrsmediator.Domain\webapicqrsmediator.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Shared\" />
+  </ItemGroup>
+
 </Project>
