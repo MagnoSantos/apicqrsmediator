@@ -8,7 +8,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
     public class ClienteRequestTestes
     {
         private Fixture _fixture;
-        private ClienteRequest _clienteRequest;
+        private AdicionarClienteDataRequest _clienteRequest;
 
         [OneTimeSetUp]
         public void ConfigurarFixture()
@@ -21,7 +21,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Command
         {
             var nome = _fixture.Create<string>();
             var email = _fixture.Create<string>();
-            _clienteRequest = new ClienteRequest
+            _clienteRequest = new AdicionarClienteDataRequest
             {
                 Nome = nome,
                 Email = email

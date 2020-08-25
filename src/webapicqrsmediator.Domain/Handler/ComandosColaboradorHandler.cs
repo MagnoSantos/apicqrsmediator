@@ -7,7 +7,7 @@ using webapicqrsmediator.Infrastructure.DataAgents;
 
 namespace webapicqrsmediator.Domain.Handler
 {
-    public class ComandosColaboradorHandler : IRequestHandler<ColaboradorRequest, ColaboradorResponse>
+    public class ComandosColaboradorHandler : IRequestHandler<AdicionarColaboradorDataRequest, AdicionarColaboradorDataResponse>
     {
         private readonly IDummyAgent _colaboradorAgent;
 
@@ -16,7 +16,7 @@ namespace webapicqrsmediator.Domain.Handler
             _colaboradorAgent = colaboradorAgent;
         }
 
-        public async Task<ColaboradorResponse> Handle(ColaboradorRequest request, CancellationToken cancellationToken)
+        public async Task<AdicionarColaboradorDataResponse> Handle(AdicionarColaboradorDataRequest request, CancellationToken cancellationToken)
         {
             var response = await _colaboradorAgent.AdicionarColaborador(
                 nome: request.Nome,
@@ -24,7 +24,7 @@ namespace webapicqrsmediator.Domain.Handler
                 idade: request.Idade
             );
 
-            return new ColaboradorResponse
+            return new AdicionarColaboradorDataResponse
             {
                 Id = Guid.NewGuid().ToString(),
                 Status = response.Status,

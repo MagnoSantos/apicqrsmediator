@@ -5,7 +5,7 @@ using webapicqrsmediator.Domain.Commands.Response;
 
 namespace webapicqrsmediator.Domain.Commands
 {
-    public class ClienteRequest : IRequest<ClienteResponse>
+    public class AdicionarClienteDataRequest : IRequest<AdicionarClienteDataResponse>
     {
         [JsonPropertyName("nome")]
         public string Nome { get; set; }
@@ -18,7 +18,7 @@ namespace webapicqrsmediator.Domain.Commands
     /// Validação dos parâmetros do corpo da requisição, no caso os dados do DTO: ClienteRequest
     /// Link de referência: https://fluentvalidation.net/
     /// </summary>
-    public class AdicionarClienteValidator : AbstractValidator<ClienteRequest>
+    public class AdicionarClienteValidator : AbstractValidator<AdicionarClienteDataRequest>
     {
         public AdicionarClienteValidator()
         {

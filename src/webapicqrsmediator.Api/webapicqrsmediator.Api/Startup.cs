@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using webapicqrsmediator.Api.Configuracoes;
 using webapicqrsmediator.Api.Extensions;
+using webapicqrsmediator.Api.Util;
 using webapicqrsmediator.Infrastructure.CrossCutting;
 
 namespace webapicqrsmediator.Api
@@ -56,13 +57,13 @@ namespace webapicqrsmediator.Api
 
             app.UseRouting();
 
-            app.UseMiddleware<ExcecoesGlobaisMiddleware>();
+            app.UseMiddleware<ApiMiddleware>();
 
             app.UseAuthorization();
 
             app.UseHealthChecks("/health", new HealthCheckOptions
             {
-                Predicate  = _ => true, 
+                Predicate = _ => true,
                 ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
             });
 

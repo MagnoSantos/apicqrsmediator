@@ -44,10 +44,9 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         private static void ConfigurarMediator(this IServiceCollection services)
         {
             services
-                .AddMediatR(typeof(ClienteRequest).GetTypeInfo().Assembly)
+                .AddMediatR(typeof(AdicionarClienteDataRequest).GetTypeInfo().Assembly)
                 .AddMediatR(typeof(ObterClientePorIdRequest).GetTypeInfo().Assembly)
-                .AddMediatR(typeof(ColaboradorRequest).GetTypeInfo().Assembly)
-                .AddScoped(typeof(IPipelineBehavior<,>), typeof(ApplicationLoggingBehavior<,>))
+                .AddMediatR(typeof(AdicionarColaboradorDataRequest).GetTypeInfo().Assembly)
                 .AddScoped(typeof(IPipelineBehavior<,>), typeof(CachingDecorateBehavior<,>));
         }
 
@@ -60,7 +59,7 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         private static void ConfigurarValidators(this IServiceCollection services)
         {
             services
-                .AddTransient<IValidator<ClienteRequest>, AdicionarClienteValidator>();
+                .AddTransient<IValidator<AdicionarClienteDataRequest>, AdicionarClienteValidator>();
         }
 
         private static void ConfiguraraData(this IServiceCollection services)

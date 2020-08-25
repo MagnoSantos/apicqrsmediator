@@ -5,17 +5,18 @@ using System.Net;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Threading.Tasks;
+using webapicqrsmediator.Shared;
 
-namespace webapicqrsmediator.Infrastructure.CrossCutting
+namespace webapicqrsmediator.Api.Util
 {
-    public class ExcecoesGlobaisMiddleware
+    public class ApiMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly ILogger<ExcecoesGlobaisMiddleware> _logger;
+        private readonly ILogger<ApiMiddleware> _logger;
 
-        public ExcecoesGlobaisMiddleware(
+        public ApiMiddleware(
             RequestDelegate next,
-            ILogger<ExcecoesGlobaisMiddleware> logger
+            ILogger<ApiMiddleware> logger
         )
         {
             _logger = logger;
@@ -26,7 +27,11 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         {
             try
             {
+                _logger.LogInformation($"Requisição solicitada na API", httpContext.Request.Body.ObterConteudo());
+
                 await _next(httpContext);
+
+                _logger.LogInformation($"Requisição completa pela API", httpContext.Response.Body.ObterConteudo());
             }
             catch (Exception ex)
             {

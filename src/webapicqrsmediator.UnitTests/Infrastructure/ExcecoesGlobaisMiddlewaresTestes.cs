@@ -13,20 +13,20 @@ namespace webapicqrsmediator.UnitTests.Infrastructure
     public class ExcecoesGlobaisMiddlewaresTestes
     {
         private DefaultHttpContext _httpContext;
-        private Mock<ILogger<ExcecoesGlobaisMiddleware>> _logger;
-        private ExcecoesGlobaisMiddleware _hostMiddleware;
+        private Mock<ILogger<ApiMiddleware>> _logger;
+        private ApiMiddleware _hostMiddleware;
 
         [SetUp]
         public void SetupMocks()
         {
             _httpContext = new DefaultHttpContext();
-            _logger = new Mock<ILogger<ExcecoesGlobaisMiddleware>>();
+            _logger = new Mock<ILogger<ApiMiddleware>>();
         }
 
         [Test]
         public async Task DeveRetornarOkSeNaoOcorrerErroNaChamada()
         {
-            _hostMiddleware = new ExcecoesGlobaisMiddleware(_ => Task.CompletedTask, _logger.Object);
+            _hostMiddleware = new ApiMiddleware(_ => Task.CompletedTask, _logger.Object);
 
             await _hostMiddleware.Invoke(_httpContext);
 
@@ -36,7 +36,7 @@ namespace webapicqrsmediator.UnitTests.Infrastructure
         [Test]
         public async Task DeveRetornarErroInternoDaAplicacaoSeAChamadaNaoForBemSucedida()
         {
-            _hostMiddleware = new ExcecoesGlobaisMiddleware(_ => throw new Exception(), _logger.Object);
+            _hostMiddleware = new ApiMiddleware(_ => throw new Exception(), _logger.Object);
 
             await _hostMiddleware.Invoke(_httpContext);
 

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Queries.Cache;
@@ -30,8 +31,11 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
 
                 return _cache.Set(
                     chave,
-                    resposta
-                //Definir o memory options para tempo de retenção no cache
+                    resposta,
+                    new MemoryCacheEntryOptions
+                    {
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1)
+                    }
                 );
             }
 

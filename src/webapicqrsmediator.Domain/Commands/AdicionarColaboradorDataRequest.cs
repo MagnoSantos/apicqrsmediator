@@ -5,7 +5,7 @@ using webapicqrsmediator.Domain.Commands.Response;
 
 namespace webapicqrsmediator.Domain
 {
-    public class ColaboradorRequest : IRequest<ColaboradorResponse>
+    public class AdicionarColaboradorDataRequest : IRequest<AdicionarColaboradorDataResponse>
     {
         [JsonPropertyName("name")]
         public string Nome { get; set; }
@@ -21,7 +21,7 @@ namespace webapicqrsmediator.Domain
     /// Validação dos parâmetros do corpo da requisição, no caso os dados do DTO: ColaboradorRequest
     /// Link de referência: https://fluentvalidation.net/
     /// </summary>
-    public class ColaboradorValidator : AbstractValidator<ColaboradorRequest>
+    public class ColaboradorValidator : AbstractValidator<AdicionarColaboradorDataRequest>
     {
         public ColaboradorValidator()
         {

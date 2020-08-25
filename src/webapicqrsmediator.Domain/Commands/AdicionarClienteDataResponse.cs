@@ -2,7 +2,7 @@
 
 namespace webapicqrsmediator.Domain.Commands.Response
 {
-    public class ClienteResponse
+    public class AdicionarClienteDataResponse
     {
         public Guid Id { get; set; }
 

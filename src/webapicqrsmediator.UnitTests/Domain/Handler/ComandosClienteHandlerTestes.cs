@@ -36,7 +36,7 @@ namespace webapicqrsmediator.UnitTests.Domain.Handler
         [Test]
         public async Task DeveChamarHandlerDeComandosClienteParaAdicionarUmNovoCliente()
         {
-            var clienteRequest = _fixture.Create<ClienteRequest>();
+            var clienteRequest = _fixture.Create<AdicionarClienteDataRequest>();
             var cliente = new Cliente(clienteRequest.Nome, clienteRequest.Email, DateTime.UtcNow);
             _repository
                 .Setup(mock => mock.Adicionar(cliente))

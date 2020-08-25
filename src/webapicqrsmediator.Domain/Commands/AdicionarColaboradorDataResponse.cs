@@ -1,6 +1,6 @@
 ﻿namespace webapicqrsmediator.Domain.Commands.Response
 {
-    public class ColaboradorResponse
+    public class AdicionarColaboradorDataResponse
     {
         public string Id { get; set; }
 
