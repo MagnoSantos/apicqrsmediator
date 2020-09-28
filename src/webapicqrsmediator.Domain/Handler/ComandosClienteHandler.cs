@@ -16,12 +16,12 @@ namespace webapicqrsmediator.Domain.Handler
         private readonly IClienteRepository _clienteRepository;
         private readonly IMediator _mediator;
         private readonly IConversor<AdicionarClienteDataRequest, Cliente> _conversorClienteModel;
-        private readonly IConversor<Cliente, AdicionarClienteDataResponse> _conversorClienteResponse;
+        private readonly IConversor<AdicionarClienteDataRequest, AdicionarClienteDataResponse> _conversorClienteResponse;
 
         public ComandosClienteHandler(IClienteRepository clienteRepository,
                                       IMediator mediator,
                                       IConversor<AdicionarClienteDataRequest, Cliente> conversorModel,
-                                      IConversor<Cliente, AdicionarClienteDataResponse> conversorResponse)
+                                      IConversor<AdicionarClienteDataRequest, AdicionarClienteDataResponse> conversorResponse)
         {
             _clienteRepository = clienteRepository;
             _mediator = mediator;
@@ -42,7 +42,7 @@ namespace webapicqrsmediator.Domain.Handler
                 })
             );
 
-            return _conversorClienteResponse.Convert(cliente);
+            return _conversorClienteResponse.Convert(request);
         }
     }
 }

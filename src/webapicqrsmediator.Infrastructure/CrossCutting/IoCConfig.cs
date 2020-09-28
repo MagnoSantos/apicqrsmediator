@@ -12,6 +12,7 @@ using webapicqrsmediator.Domain.Entitites;
 using webapicqrsmediator.Domain.Interfaces.Converters;
 using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Queries;
+using webapicqrsmediator.Domain.Queries.Response;
 using webapicqrsmediator.Infrastructure.CrossCutting.Caching.Options;
 using webapicqrsmediator.Infrastructure.Data.Context;
 using webapicqrsmediator.Infrastructure.Data.Repositories;
@@ -91,7 +92,8 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         {
             services
                 .AddTransient<IConversor<AdicionarClienteDataRequest, Cliente>, ClienteConverter>()
-                .AddTransient<IConversor<Cliente, AdicionarClienteDataResponse>, ClienteResponseConverter>();
+                .AddTransient<IConversor<AdicionarClienteDataRequest, AdicionarClienteDataResponse>, ClienteAdicionarResponseConverter>()
+                .AddTransient<IConversor<Cliente, ObterClientePorIdResponse>, ClienteObterPorIdResponseConverter>();
         }
     }
 }

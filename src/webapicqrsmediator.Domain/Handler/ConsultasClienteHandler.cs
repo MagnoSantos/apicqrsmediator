@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using webapicqrsmediator.Domain.Entitites;
+using webapicqrsmediator.Domain.Interfaces.Converters;
 using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Queries;
 using webapicqrsmediator.Domain.Queries.Response;
@@ -11,12 +13,13 @@ namespace webapicqrsmediator.Domain.Handler
         IRequestHandler<ObterClientePorIdRequest, ObterClientePorIdResponse>
     {
         private readonly IClienteRepository _clienteRepository;
+        private readonly IConversor<Cliente, ObterClientePorIdResponse> _conversor;
 
-        public ConsultasClienteHandler(
-            IClienteRepository clienteRepository
-        )
+        public ConsultasClienteHandler(IClienteRepository clienteRepository,
+                                       IConversor<Cliente, ObterClientePorIdResponse> conversor)
         {
             _clienteRepository = clienteRepository;
+            _conversor = conversor;
         }
 
         public async Task<ObterClientePorIdResponse> Handle(ObterClientePorIdRequest request, CancellationToken cancellationToken)
@@ -25,12 +28,7 @@ namespace webapicqrsmediator.Domain.Handler
 
             if (cliente == null) return null;
 
-            return new ObterClientePorIdResponse
-            {
-                Id = cliente.Id,
-                Email = cliente.Email,
-                Nome = cliente.Nome
-            };
+            return _conversor.Convert(cliente);
         }
     }
 }
