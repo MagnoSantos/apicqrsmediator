@@ -5,11 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain;
+using webapicqrsmediator.Shared;
 
 namespace webapicqrsmediator.Api.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route(Constantes.Rotas.RoutePrefix)]
     public class ColaboradorController : ControllerBase
     {
         /// <summary>

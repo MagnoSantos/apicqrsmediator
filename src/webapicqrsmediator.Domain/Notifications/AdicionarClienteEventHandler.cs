@@ -10,7 +10,7 @@ namespace webapicqrsmediator.Domain.Notifications
         public Task Handle(AdicionarClienteDataNotification notification, CancellationToken cancellationToken)
         {
             //Enviar por exemplo um email de notificação (usar fila)
-            throw new System.NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }

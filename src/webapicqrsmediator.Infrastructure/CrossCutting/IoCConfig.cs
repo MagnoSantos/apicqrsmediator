@@ -6,6 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using webapicqrsmediator.Domain;
 using webapicqrsmediator.Domain.Commands;
+using webapicqrsmediator.Domain.Commands.Response;
+using webapicqrsmediator.Domain.Converters;
+using webapicqrsmediator.Domain.Entitites;
+using webapicqrsmediator.Domain.Interfaces.Converters;
 using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Queries;
 using webapicqrsmediator.Infrastructure.CrossCutting.Caching.Options;
@@ -44,6 +48,7 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
             services.ConfigurarValidators();
             services.ConfiguraraData();
             services.ConfigurarAgent();
+            services.ConfigurarConverters();
         }
 
         private static void ConfigurarMediator(this IServiceCollection services)
@@ -80,6 +85,13 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         {
             services
                 .AddTransient<IColaboradorAgent, ColaboradorAgent>();
+        }
+
+        private static void ConfigurarConverters(this IServiceCollection services)
+        {
+            services
+                .AddTransient<IConversor<AdicionarClienteDataRequest, Cliente>, ClienteConverter>()
+                .AddTransient<IConversor<Cliente, AdicionarClienteDataResponse>, ClienteResponseConverter>();
         }
     }
 }

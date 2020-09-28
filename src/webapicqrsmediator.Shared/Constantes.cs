@@ -9,5 +9,10 @@ namespace webapicqrsmediator.Shared
             public const string InternalServerError = "Erro interno da aplicação";
             public const string ClienteNaoEncontrado = "Não foi encontrado cliente com o Id informado";
         }
+
+        public static class Rotas
+        {
+            public const string RoutePrefix = "api/v{version:apiVersion}/[controller]";
+        }
     }
 }

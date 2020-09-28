@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Net;
-using System.Net.Mime;
 using System.Text.Json;
 using System.Threading.Tasks;
 using webapicqrsmediator.Shared;
@@ -27,11 +25,7 @@ namespace webapicqrsmediator.Api.Util
         {
             try
             {
-                _logger.LogInformation($"Requisição solicitada na API", httpContext.Request.Body.ObterConteudo());
-
                 await _next(httpContext);
-
-                _logger.LogInformation($"Requisição completa pela API", httpContext.Response.Body.ObterConteudo());
             }
             catch (Exception ex)
             {

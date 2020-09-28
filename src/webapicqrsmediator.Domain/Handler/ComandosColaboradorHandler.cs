@@ -3,7 +3,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Commands.Response;
+using webapicqrsmediator.Domain.Interfaces.Converters;
 using webapicqrsmediator.Infrastructure.DataAgents;
+using webapicqrsmediator.Infrastructure.DataAgents.Responses;
 
 namespace webapicqrsmediator.Domain.Handler
 {
@@ -11,10 +13,13 @@ namespace webapicqrsmediator.Domain.Handler
         IRequestHandler<AdicionarColaboradorDataRequest, AdicionarColaboradorDataResponse>
     {
         private readonly IColaboradorAgent _colaboradorAgent;
+        private readonly IConversor<AdicionarColaboradorResponse, AdicionarColaboradorDataResponse> _conversor;
 
-        public ComandosColaboradorHandler(IColaboradorAgent colaboradorAgent)
+        public ComandosColaboradorHandler(IColaboradorAgent colaboradorAgent,
+                                          IConversor<AdicionarColaboradorResponse, AdicionarColaboradorDataResponse> conversor)
         {
             _colaboradorAgent = colaboradorAgent;
+            _conversor = conversor;
         }
 
         public async Task<AdicionarColaboradorDataResponse> Handle(AdicionarColaboradorDataRequest request, CancellationToken cancellationToken)
@@ -25,12 +30,7 @@ namespace webapicqrsmediator.Domain.Handler
                 idade: request.Idade
             );
 
-            return new AdicionarColaboradorDataResponse
-            {
-                Id = Guid.NewGuid().ToString(),
-                Status = response.Status,
-                Nome = response.Dados?.Nome,
-            };
+            return _conversor.Convert(response);
         }
     }
 }

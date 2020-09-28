@@ -10,7 +10,7 @@ using webapicqrsmediator.Shared;
 namespace webapicqrsmediator.Api.Controllers
 {
     [ApiController]
-    [Route("api/v{version:apiVersion}/[controller]")]
+    [Route(Constantes.Rotas.RoutePrefix)]
     public class ClienteController : ControllerBase
     {
         /// <summary>

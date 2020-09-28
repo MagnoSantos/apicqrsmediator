@@ -1,10 +1,10 @@
 ﻿using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Commands;
 using webapicqrsmediator.Domain.Commands.Response;
 using webapicqrsmediator.Domain.Entitites;
+using webapicqrsmediator.Domain.Interfaces.Converters;
 using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Notifications;
 
@@ -15,17 +15,23 @@ namespace webapicqrsmediator.Domain.Handler
     {
         private readonly IClienteRepository _clienteRepository;
         private readonly IMediator _mediator;
+        private readonly IConversor<AdicionarClienteDataRequest, Cliente> _conversorClienteModel;
+        private readonly IConversor<Cliente, AdicionarClienteDataResponse> _conversorClienteResponse;
 
         public ComandosClienteHandler(IClienteRepository clienteRepository,
-                                      IMediator mediator)
+                                      IMediator mediator,
+                                      IConversor<AdicionarClienteDataRequest, Cliente> conversorModel,
+                                      IConversor<Cliente, AdicionarClienteDataResponse> conversorResponse)
         {
             _clienteRepository = clienteRepository;
             _mediator = mediator;
+            _conversorClienteModel = conversorModel;
+            _conversorClienteResponse = conversorResponse;
         }
 
         public async Task<AdicionarClienteDataResponse> Handle(AdicionarClienteDataRequest request, CancellationToken cancellationToken)
         {
-            var cliente = new Cliente(request.Nome, request.Email, DateTime.UtcNow);
+            var cliente = _conversorClienteModel.Convert(request);
 
             await Task.WhenAll(
                 _clienteRepository.Adicionar(cliente),
@@ -36,13 +42,7 @@ namespace webapicqrsmediator.Domain.Handler
                 })
             );
 
-            return new AdicionarClienteDataResponse
-            {
-                Id = cliente.Id,
-                Nome = cliente.Nome,
-                Email = cliente.Email,
-                DataCriacao = cliente.DataCriacao
-            };
+            return _conversorClienteResponse.Convert(cliente);
         }
     }
 }
