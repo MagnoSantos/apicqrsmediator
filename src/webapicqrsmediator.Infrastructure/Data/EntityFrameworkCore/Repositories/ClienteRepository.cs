@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Models;
-using webapicqrsmediator.Domain.Repositories;
+using webapicqrsmediator.Domain.Entitites;
+using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Infrastructure.Data.Context;
 
 namespace webapicqrsmediator.Infrastructure.Data.Repositories

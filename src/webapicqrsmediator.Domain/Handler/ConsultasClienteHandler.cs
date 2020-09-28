@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Queries;
 using webapicqrsmediator.Domain.Queries.Response;
-using webapicqrsmediator.Domain.Repositories;
 
 namespace webapicqrsmediator.Domain.Handler
 {
-    public class ConsultasClienteHandler : 
+    public class ConsultasClienteHandler :
         IRequestHandler<ObterClientePorIdRequest, ObterClientePorIdResponse>
     {
         private readonly IClienteRepository _clienteRepository;

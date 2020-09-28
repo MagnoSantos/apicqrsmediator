@@ -1,4 +1,6 @@
-﻿namespace webapicqrsmediator.Api.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace webapicqrsmediator.Api.Controllers
 {
     public class Sucesso<TData>
     {

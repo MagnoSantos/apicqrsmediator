@@ -1,4 +1,4 @@
-﻿namespace webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options
+﻿namespace webapicqrsmediator.Infrastructure.DataAgents.Options
 {
     public class DummyOptions
     {

@@ -1,18 +1,23 @@
 ﻿using MediatR;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Queries.Cache;
+using webapicqrsmediator.Domain.Queries;
+using webapicqrsmediator.Infrastructure.CrossCutting.Caching.Options;
 
 namespace webapicqrsmediator.Infrastructure.CrossCutting
 {
     public class CachingDecorateBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     {
+        private readonly CacheOptions _options;
         private readonly IMemoryCache _cache;
 
-        public CachingDecorateBehavior(IMemoryCache cache)
+        public CachingDecorateBehavior(IOptionsMonitor<CacheOptions> options,
+                                       IMemoryCache cache)
         {
+            _options = options.CurrentValue;
             _cache = cache;
         }
 
@@ -34,7 +39,7 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
                     resposta,
                     new MemoryCacheEntryOptions
                     {
-                        AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(1)
+                        AbsoluteExpirationRelativeToNow = TimeSpan.FromDays(_options.TempoRetencaoCacheEmDias)
                     }
                 );
             }

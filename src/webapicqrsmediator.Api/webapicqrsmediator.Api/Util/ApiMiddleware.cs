@@ -37,10 +37,7 @@ namespace webapicqrsmediator.Api.Util
             {
                 _logger.LogError("Excecao", ex);
 
-                var codigo = HttpStatusCode.InternalServerError;
-
-                httpContext.Response.ContentType = MediaTypeNames.Application.Json;
-                httpContext.Response.StatusCode = (int)codigo;
+                httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 await httpContext.Response.WriteAsync(
                     JsonSerializer.Serialize(
                         new { erro = ex.Message },

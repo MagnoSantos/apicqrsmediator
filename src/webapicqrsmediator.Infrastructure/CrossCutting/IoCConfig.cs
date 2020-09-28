@@ -6,12 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using webapicqrsmediator.Domain;
 using webapicqrsmediator.Domain.Commands;
+using webapicqrsmediator.Domain.Interfaces.Repositories;
 using webapicqrsmediator.Domain.Queries;
-using webapicqrsmediator.Domain.Repositories;
-using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
+using webapicqrsmediator.Infrastructure.CrossCutting.Caching.Options;
 using webapicqrsmediator.Infrastructure.Data.Context;
 using webapicqrsmediator.Infrastructure.Data.Repositories;
 using webapicqrsmediator.Infrastructure.DataAgents;
+using webapicqrsmediator.Infrastructure.DataAgents.Options;
 
 namespace webapicqrsmediator.Infrastructure.CrossCutting
 {
@@ -25,6 +26,10 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
             services.Configure<DummyOptions>(options =>
             {
                 options.UrlBase = configuration.GetValue<string>("AppConfiguration:UrlDummy");
+            });
+            services.Configure<CacheOptions>(options =>
+            {
+                options.TempoRetencaoCacheEmDias = configuration.GetValue<uint>("AppConfiguration:TempoRetencaoCacheEmDias");
             });
         }
 
@@ -74,7 +79,7 @@ namespace webapicqrsmediator.Infrastructure.CrossCutting
         private static void ConfigurarAgent(this IServiceCollection services)
         {
             services
-                .AddTransient<IDummyAgent, DummyAgent>();
+                .AddTransient<IColaboradorAgent, ColaboradorAgent>();
         }
     }
 }

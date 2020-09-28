@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using webapicqrsmediator.Domain.Models;
+using webapicqrsmediator.Domain.Entitites;
 
 namespace webapicqrsmediator.Infrastructure.Data.Context
 {

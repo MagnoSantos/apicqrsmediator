@@ -1,4 +1,6 @@
-﻿namespace webapicqrsmediator.Domain.Models
+﻿using webapicqrsmediator.Domain.Entities;
+
+namespace webapicqrsmediator.Domain.Entitites
 {
     public class Colaborador : Base
     {

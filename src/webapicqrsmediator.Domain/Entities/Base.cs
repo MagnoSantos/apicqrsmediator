@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace webapicqrsmediator.Domain.Models
+namespace webapicqrsmediator.Domain.Entities
 {
     public class Base
     {

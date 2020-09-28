@@ -7,11 +7,12 @@ using webapicqrsmediator.Infrastructure.DataAgents;
 
 namespace webapicqrsmediator.Domain.Handler
 {
-    public class ComandosColaboradorHandler : IRequestHandler<AdicionarColaboradorDataRequest, AdicionarColaboradorDataResponse>
+    public class ComandosColaboradorHandler :
+        IRequestHandler<AdicionarColaboradorDataRequest, AdicionarColaboradorDataResponse>
     {
-        private readonly IDummyAgent _colaboradorAgent;
+        private readonly IColaboradorAgent _colaboradorAgent;
 
-        public ComandosColaboradorHandler(IDummyAgent colaboradorAgent)
+        public ComandosColaboradorHandler(IColaboradorAgent colaboradorAgent)
         {
             _colaboradorAgent = colaboradorAgent;
         }

@@ -3,17 +3,16 @@ using Flurl.Http;
 using Microsoft.Extensions.Options;
 using Polly;
 using System.Threading.Tasks;
-using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
-using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses;
-using webapicqrsmediator.Infrastructure.DataAgents.Dummy.Responses;
+using webapicqrsmediator.Infrastructure.DataAgents.Options;
+using webapicqrsmediator.Infrastructure.DataAgents.Responses;
 
 namespace webapicqrsmediator.Infrastructure.DataAgents
 {
-    public class DummyAgent : IDummyAgent
+    public class ColaboradorAgent : IColaboradorAgent
     {
         private readonly DummyOptions _options;
 
-        public DummyAgent(IOptionsMonitor<DummyOptions> options)
+        public ColaboradorAgent(IOptionsMonitor<DummyOptions> options)
         {
             _options = options.CurrentValue;
         }
@@ -40,19 +39,6 @@ namespace webapicqrsmediator.Infrastructure.DataAgents
                     })
                     .ReceiveJson<AdicionarColaboradorResponse>()
             );
-        }
-
-        public async Task<BuscarColaboradorResponse> BuscarTodosColaboradores()
-        {
-            return await Policy
-                .Handle<FlurlHttpException>()
-                .RetryAsync()
-                .ExecuteAsync(() =>
-                    _options.UrlBase
-                    .AppendPathSegment("employees")
-                    .GetAsync()
-                    .ReceiveJson<BuscarColaboradorResponse>()
-                );
         }
     }
 }

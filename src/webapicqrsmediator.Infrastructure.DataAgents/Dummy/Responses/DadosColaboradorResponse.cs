@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses
+namespace webapicqrsmediator.Infrastructure.DataAgents.Responses
 {
     public class DadosColaboradorResponse
     {

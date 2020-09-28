@@ -1,4 +1,4 @@
-﻿namespace webapicqrsmediator.Domain.Queries.Cache
+﻿namespace webapicqrsmediator.Domain.Queries
 {
     public interface ICaching
     {

@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using System;
-using webapicqrsmediator.Domain.Queries.Cache;
 using webapicqrsmediator.Domain.Queries.Response;
 
 namespace webapicqrsmediator.Domain.Queries

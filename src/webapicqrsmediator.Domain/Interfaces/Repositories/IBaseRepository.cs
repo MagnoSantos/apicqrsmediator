@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using webapicqrsmediator.Domain.Models;
+using webapicqrsmediator.Domain.Entities;
 
-namespace webapicqrsmediator.Domain.Repositories
+namespace webapicqrsmediator.Domain.Interfaces.Repositories
 {
-    public interface IBaseClienteRepository<TEntity> where TEntity : Base
+    public interface IBaseRepository<TEntity> where TEntity : Base
     {
         Task Adicionar(TEntity entidade);
 

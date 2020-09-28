@@ -8,11 +8,11 @@ namespace webapicqrsmediator.Api.HealthCheck
 {
     public class DummyHealthCheck : IHealthCheck
     {
-        private readonly IDummyAgent _dummyAgent;
+        private readonly IColaboradorAgent _colaboradorAgent;
 
-        public DummyHealthCheck(IDummyAgent dummyAgent)
+        public DummyHealthCheck(IColaboradorAgent colaboradorAgent)
         {
-            _dummyAgent = dummyAgent;
+            _colaboradorAgent = colaboradorAgent;
         }
 
         public async Task<HealthCheckResult> CheckHealthAsync(
@@ -20,26 +20,7 @@ namespace webapicqrsmediator.Api.HealthCheck
             CancellationToken cancellationToken = default
         )
         {
-            try
-            {
-                var colaboradores = await _dummyAgent.BuscarTodosColaboradores();
-                
-                if (colaboradores == null)
-                {
-                    return HealthCheckResult.Unhealthy(
-                        description: "Integracao com a API do Dummy nao retornou nenhum colaborador"
-                    );
-                }
-
-                return HealthCheckResult.Healthy();
-            }
-            catch (Exception ex)
-            {
-                return HealthCheckResult.Unhealthy(
-                    description: "Falha ao comunicar com a API do Dummy",
-                    exception: ex                    
-                );
-            }
+            throw new System.NotImplementedException();
         }
     }
 }

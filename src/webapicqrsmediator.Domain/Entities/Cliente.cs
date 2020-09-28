@@ -1,11 +1,10 @@
 ﻿using System;
+using webapicqrsmediator.Domain.Entities;
 
-namespace webapicqrsmediator.Domain.Models
+namespace webapicqrsmediator.Domain.Entitites
 {
     public class Cliente : Base
     {
-        public Cliente() { }
-
         public Cliente(string nome, string email, DateTime data)
         {
             Nome = nome;
