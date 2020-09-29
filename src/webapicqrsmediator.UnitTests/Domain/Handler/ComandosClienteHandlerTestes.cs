@@ -6,9 +6,11 @@ using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using webapicqrsmediator.Domain.Commands;
+using webapicqrsmediator.Domain.Commands.Response;
+using webapicqrsmediator.Domain.Entitites;
 using webapicqrsmediator.Domain.Handler;
-using webapicqrsmediator.Domain.Models;
-using webapicqrsmediator.Domain.Repositories;
+using webapicqrsmediator.Domain.Interfaces.Converters;
+using webapicqrsmediator.Domain.Interfaces.Repositories;
 
 namespace webapicqrsmediator.UnitTests.Domain.Handler
 {
@@ -17,6 +19,8 @@ namespace webapicqrsmediator.UnitTests.Domain.Handler
         private Fixture _fixture;
         private Mock<IClienteRepository> _repository;
         private Mock<IMediator> _mediator;
+        private Mock<IConversor<AdicionarClienteDataRequest, Cliente>> _conversorClienteModelMock;
+        private Mock<IConversor<AdicionarClienteDataRequest, AdicionarClienteDataResponse>> _conversorClienteResponseMock;
         private ComandosClienteHandler _comandosClienteHandler;
 
         [OneTimeSetUp]
@@ -30,7 +34,12 @@ namespace webapicqrsmediator.UnitTests.Domain.Handler
         {
             _repository = new Mock<IClienteRepository>();
             _mediator = new Mock<IMediator>();
-            _comandosClienteHandler = new ComandosClienteHandler(_repository.Object);
+            _comandosClienteHandler = new ComandosClienteHandler(
+                _repository.Object,
+                _mediator.Object,
+                _conversorClienteModelMock.Object,
+                _conversorClienteResponseMock.Object
+            );
         }
 
         [Test]

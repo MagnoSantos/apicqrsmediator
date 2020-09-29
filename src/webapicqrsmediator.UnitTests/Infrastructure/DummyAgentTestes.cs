@@ -1,16 +1,15 @@
 ﻿using AutoFixture;
 using FluentAssertions;
 using Flurl.Http.Testing;
-using Microsoft.Extensions.Azure;
 using Microsoft.Extensions.Options;
 using Moq;
 using NUnit.Framework;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Options;
-using webapicqrsmediator.Infrastructure.Data.Agents.Dummy.Responses;
 using webapicqrsmediator.Infrastructure.DataAgents;
+using webapicqrsmediator.Infrastructure.DataAgents.Options;
+using webapicqrsmediator.Infrastructure.DataAgents.Responses;
 
 namespace webapicqrsmediator.UnitTests.Infrastructure
 {
@@ -20,7 +19,7 @@ namespace webapicqrsmediator.UnitTests.Infrastructure
         private HttpTest _httpTest;
         private DummyOptions _options;
         private Mock<IOptionsMonitor<DummyOptions>> _optionsMonitor;
-        private DummyAgent _agent;
+        private ColaboradorAgent _agent;
 
         [OneTimeSetUp]
         public void ConfigurarFixture()
@@ -40,7 +39,7 @@ namespace webapicqrsmediator.UnitTests.Infrastructure
             _optionsMonitor
                 .Setup(mock => mock.CurrentValue)
                 .Returns(_options);
-            _agent = new DummyAgent(_optionsMonitor.Object);
+            _agent = new ColaboradorAgent(_optionsMonitor.Object);
         }
 
         [TearDown]

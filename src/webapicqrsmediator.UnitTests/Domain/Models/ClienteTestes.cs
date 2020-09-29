@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NUnit.Framework;
 using System;
-using webapicqrsmediator.Domain.Models;
+using webapicqrsmediator.Domain.Entitites;
 
 namespace webapicqrsmediator.UnitTests.Domain.Models
 {

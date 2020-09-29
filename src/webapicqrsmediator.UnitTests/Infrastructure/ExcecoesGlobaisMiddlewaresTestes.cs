@@ -5,6 +5,7 @@ using Moq;
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
+using webapicqrsmediator.Api.Util;
 using webapicqrsmediator.Infrastructure.CrossCutting;
 
 namespace webapicqrsmediator.UnitTests.Infrastructure
@@ -36,7 +37,10 @@ namespace webapicqrsmediator.UnitTests.Infrastructure
         [Test]
         public async Task DeveRetornarErroInternoDaAplicacaoSeAChamadaNaoForBemSucedida()
         {
-            _hostMiddleware = new ApiMiddleware(_ => throw new Exception(), _logger.Object);
+            _hostMiddleware = new ApiMiddleware(_ =>
+            {
+                throw new Exception();
+            }, _logger.Object);
 
             await _hostMiddleware.Invoke(_httpContext);
 

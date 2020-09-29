@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoFixture" Version="4.13.0" />
+    <PackageReference Include="AutoFixture" Version="4.14.0" />
+    <PackageReference Include="AutoFixture.AutoMoq" Version="4.14.0" />
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="FluentValidation" Version="9.0.1" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.0.1" />
@@ -20,10 +21,6 @@
   <ItemGroup>
     <ProjectReference Include="..\webapicqrsmediator.Api\webapicqrsmediator.Api\webapicqrsmediator.Api.csproj" />
     <ProjectReference Include="..\webapicqrsmediator.Domain\webapicqrsmediator.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Shared\" />
   </ItemGroup>
 
 </Project>
